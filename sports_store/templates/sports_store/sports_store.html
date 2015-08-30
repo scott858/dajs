@@ -1,0 +1,58 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html ng-app="sportsStore">
+<head>
+    <meta charset="UTF-8">
+    <title>Sports Store</title>
+    {% block stylesheets %}
+        <link href="{% static 'dajs/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+        <link href="{% static 'dajs/bootstrap/css/bootstrap-theme.css' %}" rel="stylesheet">
+    {% endblock stylesheets %}
+</head>
+<body>
+<div class="row">
+    <div class="navbar navbar-inverse">
+        <a class="navbar-brand" href="#">SPORTS STORE</a>
+    </div>
+    {% verbatim %}
+    <div ng-controller="sportsStoreController">
+        <div class="panel panel-default" ng-controller="productListController">
+            <div class="panel-body row">
+                <div class="col-xs-4">
+                    <a ng-click="selectCategory()" class="btn btn-block btn-default btn-lg">Home</a>
+                    <a ng-repeat="item in data.products | orderBy:'category' | unique:'category'"
+                       ng-click="selectCategory(item)" class="btn btn-block btn-default btn-lg"
+                       ng-class="getCategoryClass(item)">
+                        {{ item }}
+                    </a>
+                </div>
+                <div class="col-xs-8">
+                    <div class="well" ng-repeat="item in data.products | filter:categoryFilterFn">
+                        <h3>
+                            <strong>{{ item.name }}</strong>
+                        <span class="pull-right label label-primary">
+                            {{ item.price | currency }}
+                        </span>
+                        </h3>
+                        <span class="lead">{{ item.description }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endverbatim %}
+</div>
+
+{% block javascripts %}
+    <script src="{% static 'dajs/js/jquery-2.1.1.js' %}"></script>
+    <script src="{% static 'dajs/bootstrap/js/bootstrap.js' %}"></script>
+    <script src="{% static 'dajs/js/angular.js' %}"></script>
+    <script>
+        angular.module("sportsStore", ["customFilters"]);
+    </script>
+    <script src="{% static 'sports_store/angularjs/controllers/sportsStore.js' %}"></script>
+    <script src="{% static 'sports_store/angularjs/controllers/productListControllers.js' %}"></script>
+    <script src="{% static 'sports_store/angularjs/filters/customFilters.js' %}"></script>
+{% endblock javascripts %}
+</body>
+</html>
