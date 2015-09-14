@@ -10,37 +10,20 @@
     {% endblock stylesheets %}
 </head>
 <body>
-<div class="row">
+
+<div ng-controller="sportsStoreController">
     <div class="navbar navbar-inverse">
         <a class="navbar-brand" href="#">SPORTS STORE</a>
     </div>
-    {% verbatim %}
-    <div ng-controller="sportsStoreController">
-        <div class="panel panel-default" ng-controller="productListController">
-            <div class="panel-body row">
-                <div class="col-xs-4">
-                    <a ng-click="selectCategory()" class="btn btn-block btn-default btn-lg">Home</a>
-                    <a ng-repeat="item in data.products | orderBy:'category' | unique:'category'"
-                       ng-click="selectCategory(item)" class="btn btn-block btn-default btn-lg"
-                       ng-class="getCategoryClass(item)">
-                        {{ item }}
-                    </a>
-                </div>
-                <div class="col-xs-8">
-                    <div class="well" ng-repeat="item in data.products | filter:categoryFilterFn">
-                        <h3>
-                            <strong>{{ item.name }}</strong>
-                        <span class="pull-right label label-primary">
-                            {{ item.price | currency }}
-                        </span>
-                        </h3>
-                        <span class="lead">{{ item.description }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="alert alert-danger" ng-show="data.error">
+        {% verbatim %}
+        Error ({{ data.error.status }}).
+        {% endverbatim %}
+        <a href="{% url 'sports_store:home' %}" class="alert-link">Click here to try again</a>
     </div>
-    {% endverbatim %}
+
+    {% include "sports_store/productList.html" %}
+
 </div>
 
 {% block javascripts %}

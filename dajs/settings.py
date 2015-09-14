@@ -10,12 +10,25 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 
 TEMPLATE_CONTEXT_PROCESSORS += (
+    'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
+    'django.core.context_processors.static',
+    'ws4redis.context_processors.default',
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+WEBSOCKET_URL = '/ws/'
+WS4REDIS_PREFIX = 'demo'
+WS4REDIS_EXPIRE = 7200
+# WS4REDIS_SUBSCRIBER = 'dajs.redis_store.RedisSubscriber'
+WSGI_APPLICATION = 'ws4redis.django_runserver.application'
+WS4REDIS_HEARTBEAT = '--heartbeat--'
+# WSGI_APPLICATION = 'dajs.wsgi.application'
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS_PREFIX = 'session'
 
 
 REST_FRAMEWORK = {
@@ -50,6 +63,9 @@ INSTALLED_APPS = (
     'todo',
     'sports_store',
     'rest_framework',
+    'djangular',
+    'ws4redis',
+    'chatserver',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -63,8 +79,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'dajs.urls'
-
-WSGI_APPLICATION = 'dajs.wsgi.application'
 
 
 # Database
@@ -97,4 +111,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = '/var/www/static/'
 
-STATICFILES_DIRS = ('static', '../todo/static',)
+STATICFILES_DIRS = ('static', './todo/static',)
