@@ -4,10 +4,7 @@ angular.module("cart", [])
         return {
             addProduct: function (id, name, price) {
                 var addedToExistingItem = false;
-                for (var i = 0;
-                     i < cartData.length;
-                     i++
-                ) {
+                for (var i = 0; i < cartData.length; i++) {
                     if (cartData[i].id == id) {
                         cartData[i].count++;
                         addedToExistingItem = true;
@@ -30,7 +27,7 @@ angular.module("cart", [])
                 }
             },
 
-            getProduct: function () {
+            getProducts: function () {
                 return cartData;
             }
         }
@@ -38,9 +35,9 @@ angular.module("cart", [])
     .directive("cartSummary", function (cart) {
         return {
             restrict: "E",
-            templateUrl: 'components/cart/cartSummary.html',
+            templateUrl: "/static/sports_store/angularjs/views/cartSummary.html",
             controller: function ($scope) {
-                var cartData = cart.getProduct();
+                var cartData = cart.getProducts();
 
                 $scope.total = function () {
                     var total = 0;

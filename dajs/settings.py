@@ -18,6 +18,7 @@ TEMPLATE_CONTEXT_PROCESSORS += (
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 WEBSOCKET_URL = '/ws/'
@@ -30,12 +31,15 @@ WS4REDIS_HEARTBEAT = '--heartbeat--'
 SESSION_ENGINE = 'redis_sessions.session'
 SESSION_REDIS_PREFIX = 'session'
 
-
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -61,15 +65,17 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'todo',
+    'dajs',
     'sports_store',
     'rest_framework',
+    'corsheaders',
     'djangular',
     'ws4redis',
     'chatserver',
 )
 
 MIDDLEWARE_CLASSES = (
-    'djangular.middleware.DjangularUrlMiddleware',
+    # 'djangular.middleware.DjangularUrlMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,6 +83,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 )
 
 ROOT_URLCONF = 'dajs.urls'
@@ -108,8 +115,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-
 STATIC_URL = '/static/'
 STATIC_ROOT = '/var/www/static/'
 
-STATICFILES_DIRS = ('static', './todo/static',)
+STATICFILES_DIRS = ('./dajs/static', './sports_store/static')

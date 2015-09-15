@@ -8,12 +8,58 @@
         <link href="{% static 'dajs/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
         <link href="{% static 'dajs/bootstrap/css/bootstrap-theme.css' %}" rel="stylesheet">
     {% endblock stylesheets %}
+
+    {% block javascripts %}
+        <script src="{% static 'dajs/js/jquery-2.1.1.js' %}"></script>
+        <script src="{% static 'dajs/bootstrap/js/bootstrap.js' %}"></script>
+        <script src="{% static 'dajs/js/angular.js' %}"></script>
+        {#        <script src="{% static 'dajs/djangular/js/django-angular.js' %}"></script>#}
+        <script src="{% static 'sports_store/angularjs/ngmodules/angular-route.js' %}"></script>
+
+        <script>
+            var sportsStoreApp = angular.module("sportsStore", ["customFilters", "cart", "ngRoute"])
+                    .config(function ($routeProvider) {
+
+                        $routeProvider.when("/complete", {
+                            templateUrl: "{% static 'sports_store/angularjs/views/thankYou.html' %}"
+                        });
+
+                        $routeProvider.when("/placeorder", {
+                            templateUrl: "{% static 'sports_store/angularjs/views/placeOrder.html' %}"
+                        });
+
+                        $routeProvider.when("/checkout", {
+                            templateUrl: "{% static 'sports_store/angularjs/views/checkoutSummary.html' %}"
+                        });
+
+                        $routeProvider.when("/products", {
+                            templateUrl: "{% static 'sports_store/angularjs/views/productList.html' %}"
+                        });
+
+                        $routeProvider.otherwise({
+                            templateUrl: "{% static 'sports_store/angularjs/views/productList.html' %}"
+                        });
+
+                    });
+        </script>
+
+        <script src="{% static 'sports_store/angularjs/controllers/sportsStore.js' %}"></script>
+        <script src="{% static 'sports_store/angularjs/controllers/productListControllers.js' %}"></script>
+        <script src="{% static 'sports_store/angularjs/controllers/checkoutControllers.js' %}"></script>
+        <script src="{% static 'sports_store/angularjs/filters/customFilters.js' %}"></script>
+        <script src="{% static 'sports_store/angularjs/components/cart/cart.js' %}"></script>
+
+    {% endblock javascripts %}
+
 </head>
 <body>
 
 <div ng-controller="sportsStoreController">
     <div class="navbar navbar-inverse">
         <a class="navbar-brand" href="#">SPORTS STORE</a>
+
+        <cart-summary></cart-summary>
+
     </div>
     <div class="alert alert-danger" ng-show="data.error">
         {% verbatim %}
@@ -22,21 +68,11 @@
         <a href="{% url 'sports_store:home' %}" class="alert-link">Click here to try again</a>
     </div>
 
-    <ng-include src="'{% static 'sports_store/angularjs/views/productList.html' %}'"></ng-include>
+    {#    <ng-include src="'{% static 'sports_store/angularjs/views/productList.html' %}'"></ng-include>#}
+    <ng-view></ng-view>
 
 </div>
 
-{% block javascripts %}
-    <script src="{% static 'dajs/js/jquery-2.1.1.js' %}"></script>
-    <script src="{% static 'dajs/bootstrap/js/bootstrap.js' %}"></script>
-    <script src="{% static 'dajs/js/angular.js' %}"></script>
-    <script src="{% static 'dajs/djangular/js/django-angular.js' %}"></script>
-    <script>
-        var sportsStoreApp = angular.module("sportsStore", ["customFilters"]);
-    </script>
-    <script src="{% static 'sports_store/angularjs/controllers/sportsStore.js' %}"></script>
-    <script src="{% static 'sports_store/angularjs/controllers/productListControllers.js' %}"></script>
-    <script src="{% static 'sports_store/angularjs/filters/customFilters.js' %}"></script>
-{% endblock javascripts %}
+
 </body>
 </html>

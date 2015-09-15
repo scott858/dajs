@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 
-from .serializers import ToDoSerializer, ProductSerializer
+from .serializers import ToDoSerializer, ProductSerializer, OrderSerializer
 from todo.models import ToDo
-from sports_store.models import Product
+from sports_store.models import Product, Order
 
 
 class ToDoViewset(viewsets.ModelViewSet):
@@ -10,6 +10,11 @@ class ToDoViewset(viewsets.ModelViewSet):
     serializer_class = ToDoSerializer
 
 
-class ProductViewSet(viewsets.ModelViewSet):
+class ProductViewset(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+
+class OrderViewset(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer

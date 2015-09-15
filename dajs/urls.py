@@ -2,11 +2,12 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from rest_framework import routers
 
-from api.views import ToDoViewset, ProductViewSet
+from api.views import ToDoViewset, ProductViewset, OrderViewset
 
 router = routers.DefaultRouter()
 router.register(r'todo', ToDoViewset)
-router.register(r'products', ProductViewSet)
+router.register(r'products', ProductViewset)
+router.register(r'orders', OrderViewset)
 
 urlpatterns = patterns(
     '',

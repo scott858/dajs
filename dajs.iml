@@ -3,8 +3,8 @@
   <component name="FacetManager">
     <facet type="django" name="Django">
       <configuration>
-        <option name="rootFolder" value="$MODULE_DIR$/dajs" />
-        <option name="settingsModule" value="settings.py" />
+        <option name="rootFolder" value="$MODULE_DIR$/api" />
+        <option name="settingsModule" value="" />
         <option name="manageScript" value="" />
         <option name="environment" value="&lt;map/&gt;" />
       </configuration>
@@ -18,5 +18,21 @@
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/dajs/static/dajs/js/jquery-ui-1.11.1.custom" />
+        <option value="$MODULE_DIR$/dajs/static/dajs/js/angular-ui-ng-grid-e3b7358/src/features/edit/templates" />
+        <option value="$MODULE_DIR$/dajs/static/dajs/js/angular-ui-ng-grid-e3b7358/src/templates/ui-grid" />
+        <option value="$MODULE_DIR$/dajs/static/dajs/js/angular-ui-ng-grid-e3b7358/misc/doc/templates" />
+        <option value="$MODULE_DIR$/dajs/static/dajs/js/angular-ui-ng-grid-e3b7358/misc/demo" />
+        <option value="$MODULE_DIR$/dajs/static/dajs/js/angular-ui-ng-grid-e3b7358/misc/site" />
+        <option value="$MODULE_DIR$/dajs/static/dajs/js/angular-ui-ng-grid-e3b7358/misc/site/customizer" />
+        <option value="$MODULE_DIR$/todo/templates/todo" />
+        <option value="$MODULE_DIR$/chatserver/templates" />
+        <option value="$MODULE_DIR$/chatserver/templates/registration" />
+        <option value="$MODULE_DIR$/sports_store/static/sports_store/angularjs/views" />
+        <option value="$MODULE_DIR$/sports_store/templates/sports_store" />
+      </list>
+    </option>
   </component>
 </module>
