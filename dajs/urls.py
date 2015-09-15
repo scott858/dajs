@@ -6,14 +6,14 @@ from api.views import ToDoViewset, ProductViewSet
 
 router = routers.DefaultRouter()
 router.register(r'todo', ToDoViewset)
-router.register(r'sports-store', ProductViewSet)
+router.register(r'products', ProductViewSet)
 
 urlpatterns = patterns(
     '',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/v1/', include(router.urls, namespace='api_v1')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^todo/', include('todo.urls'), name='todo'),
-    url(r'^sports-store/', include('sports_store.urls', 'sports_store')),
-    url(r'^', include('chatserver.urls'), name='chat'),
+    url(r'^todo/', include('todo.urls', namespace='todo')),
+    url(r'^sports-store/', include('sports_store.urls', namespace='sports_store')),
+    url(r'^', include('chatserver.urls', namespace='chat')),
 )
