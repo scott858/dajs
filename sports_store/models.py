@@ -15,5 +15,5 @@ class Order(models.Model):
     state = models.CharField(max_length=127)
     zip = models.CharField(max_length=127)
     country = models.CharField(max_length=127)
-    giftwrap = models.BooleanField()
-    products = models.ManyToManyField(Product, null=True, blank=True)
+    giftwrap = models.BooleanField(default=False)
+    products = models.ManyToManyField(Product, blank=True)

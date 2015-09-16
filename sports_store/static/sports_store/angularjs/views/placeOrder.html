@@ -69,6 +69,7 @@
         </div>
 
         <h3>Options</h3>
+
         <div class="checkbox">
             <label>
                 <input name="giftwrap" type="checkbox" ng-model="data.shipping.giftwrap"/>
@@ -77,7 +78,11 @@
         </div>
 
         <div class="text-center">
-            <button ng-disabled="shippingForm.$invalid" class="btn btn-primary">Complete order</button>
+            <button ng-disabled="shippingForm.$invalid"
+                    ng-click="sendOrder(data.shipping)"
+                    class="btn btn-primary">
+                Complete order
+            </button>
         </div>
     </div>
 </form>

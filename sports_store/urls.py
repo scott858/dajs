@@ -6,5 +6,5 @@ from . import views
 urlpatterns = patterns(
     '',
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^', views.sports_store, name='home'),
+    url(r'^', views.sports_store_view, name='home'),
 )
