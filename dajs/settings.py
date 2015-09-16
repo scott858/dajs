@@ -7,6 +7,7 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
+import os
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 
 TEMPLATE_CONTEXT_PROCESSORS += (
@@ -14,6 +15,15 @@ TEMPLATE_CONTEXT_PROCESSORS += (
     'django.core.context_processors.request',
     'django.core.context_processors.static',
     'ws4redis.context_processors.default',
+)
+
+LOGIN_URL = '/sports-store-admin/login'
+LOGIN_REDIRECT_URL = '/sports-store-admin/'
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, '../dajs/sports_store/templates'),
+    os.path.join(BASE_DIR, '../dajs/sportsstoreadmin/templates'),
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -67,6 +77,7 @@ INSTALLED_APPS = (
     'todo',
     'dajs',
     'sports_store',
+    'sportsstoreadmin',
     'rest_framework',
     'corsheaders',
     'djangular',
@@ -75,7 +86,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    # 'djangular.middleware.DjangularUrlMiddleware',
+    'djangular.middleware.DjangularUrlMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

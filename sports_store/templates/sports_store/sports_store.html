@@ -13,7 +13,7 @@
         <script src="{% static 'dajs/js/jquery-2.1.1.js' %}"></script>
         <script src="{% static 'dajs/bootstrap/js/bootstrap.js' %}"></script>
         <script src="{% static 'dajs/js/angular.js' %}"></script>
-        {#        <script src="{% static 'dajs/djangular/js/django-angular.js' %}"></script>#}
+        <script src="{% static 'dajs/djangular/js/django-angular.js' %}"></script>
         <script src="{% static 'sports_store/angularjs/ngmodules/angular-route.js' %}"></script>
 
         <script>
@@ -37,7 +37,7 @@
                         });
 
                         $routeProvider.otherwise({
-                            templateUrl: "{% static 'sports_store/angularjs/views/productList.html' %}"
+                            redirectTo: "/products"
                         });
 
                         $httpProvider.defaults.xsrfCookieName = 'csrftoken';

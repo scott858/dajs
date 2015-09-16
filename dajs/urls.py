@@ -16,5 +16,6 @@ urlpatterns = patterns(
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^todo/', include('todo.urls', namespace='todo')),
     url(r'^sports-store/', include('sports_store.urls', namespace='sports_store')),
+    url(r'^sports-store-admin/', include('sportsstoreadmin.urls', namespace='sports_store_admin')),
     url(r'^', include('chatserver.urls', namespace='chat')),
 )

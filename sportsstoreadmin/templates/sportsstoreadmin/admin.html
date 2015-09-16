@@ -1,0 +1,50 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html ng-app="sportsStoreAdmin">
+<head>
+    <meta charset="UTF-8">
+    <title>Administration</title>
+    {% block stylesheets %}
+        <link href="{% static 'dajs/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+        <link href="{% static 'dajs/bootstrap/css/bootstrap-theme.css' %}" rel="stylesheet">
+    {% endblock stylesheets %}
+    {% block javascripts %}
+        <script src="{% static 'dajs/js/jquery-2.1.1.js' %}"></script>
+        <script src="{% static 'dajs/bootstrap/js/bootstrap.js' %}"></script>
+        <script src="{% static 'dajs/js/angular.js' %}"></script>
+        <script src="{% static 'dajs/djangular/js/django-angular.js' %}"></script>
+        <script src="{% static 'sportsstoreadmin/angularjs/ngmodules/angular-route.js' %}"></script>
+
+        <script>
+            var sportsStoreAdminApp = angular.module("sportsStoreAdmin", ["ngRoute"])
+                    .config(function ($routeProvider, $locationProvider, $httpProvider) {
+
+                        $routeProvider.when("/login", {
+                            templateUrl: "{% url 'sports_store_admin:login' %}"
+                        });
+                        $routeProvider.when("/admin", {
+                            templateUrl: "{% url 'sports_store_admin:admin' %}"
+                        });
+
+                        $routeProvider.when("/main", {
+                            templateUrl: "{% url 'sports_store_admin:main' %}"
+                        });
+
+                        $routeProvider.otherwise({
+                            redirectTo: "/login"
+                        });
+
+                        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+                        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+                    });
+        </script>
+        <script src="{% static 'sportsstoreadmin/angularjs/controllers/adminControllers.js' %}"></script>
+    {% endblock javascripts %}
+</head>
+<body>
+
+<ng-view></ng-view>
+
+</body>
+</html>
