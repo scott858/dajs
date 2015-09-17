@@ -18,4 +18,5 @@ urlpatterns = patterns(
     url(r'^sports-store/', include('sports_store.urls', namespace='sports_store')),
     url(r'^sports-store-admin/', include('sportsstoreadmin.urls', namespace='sports_store_admin')),
     url(r'^', include('chatserver.urls', namespace='chat')),
+    url(r'^example/', include('ajsexample.urls', namespace='example')),
 )

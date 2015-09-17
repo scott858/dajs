@@ -78,6 +78,7 @@ INSTALLED_APPS = (
     'dajs',
     'sports_store',
     'sportsstoreadmin',
+    'ajsexample',
     'rest_framework',
     'corsheaders',
     'djangular',
