@@ -14,9 +14,10 @@
         <script src="{% static 'dajs/js/angular.js' %}"></script>
         <script src="{% static 'dajs/djangular/js/django-angular.js' %}"></script>
         <script src="{% static 'sportsstoreadmin/angularjs/ngmodules/angular-route.js' %}"></script>
+        <script src="{% static 'sportsstoreadmin/angularjs/ngmodules/angular-resource.js' %}"></script>
 
         <script>
-            var sportsStoreAdminApp = angular.module("sportsStoreAdmin", ["ngRoute"])
+            var sportsStoreAdminApp = angular.module("sportsStoreAdmin", ["ngRoute", "ngResource"])
                     .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
                         $routeProvider.when("/login", {
@@ -40,6 +41,7 @@
                     });
         </script>
         <script src="{% static 'sportsstoreadmin/angularjs/controllers/adminControllers.js' %}"></script>
+        <script src="{% static 'sportsstoreadmin/angularjs/controllers/adminProductController.js' %}"></script>
     {% endblock javascripts %}
 </head>
 <body>
