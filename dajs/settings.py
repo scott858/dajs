@@ -79,6 +79,7 @@ INSTALLED_APPS = (
     'sports_store',
     'sportsstoreadmin',
     'ajsexample',
+    'dygraphsex',
     'rest_framework',
     'corsheaders',
     'djangular',
